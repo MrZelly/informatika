@@ -1,6 +1,7 @@
 import tkinter, random
-canvas = tkinter.Canvas(height = 300, width = 300)
+canvas = tkinter.Canvas(height = 600, width = 600)
 canvas.pack()
+
 
 def zakoduj():
     e = entry1.get()
@@ -8,29 +9,27 @@ def zakoduj():
     b = ""
     canvas.delete("all")
     
-    for i in range(len(a)):
+    for i in range(len(e)):
         a = a + str(ord(e[i]))
-        
-    a = bin(a)
-    
-    print(len(a))
+
+    a = bin(int(a))
     
     for i in range(len(a)):
-        if(i == 1):
-            print(i)
+        if(i == 0):
+            continue
+        elif(i == 1):
+            continue
         else:
-            b = b + str()
-            
-    #b = bin(int(ord(a[])))
-    #for i in range(len(a)):
-    canvas.create_text(100, 100, text = b)
+            b = b + a[i]
+
+    canvas.create_text(300, 300, text = b)
 
 def dekoduj():
     canvas.delete("all")
-    int(a, 2)
-    print(a)
-    for i in range(len(a)):
-        canvas.create_text(100, 100, text = a[i],)
+    e = entry1.get()
+    f = int(e, 2)
+    for i in range(len(str(f))):
+        canvas.create_text(300 + i * 10, 300, text = str(f)[i])
 
 entry1 = tkinter.Entry(bg = "gold", fg = "maroon", width = 10)
 entry1.pack()
