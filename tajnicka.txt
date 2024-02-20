@@ -1,0 +1,5 @@
+informatika
+hardver
+procesor
+zdroj
+7 1 3 5

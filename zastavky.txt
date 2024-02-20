@@ -1,0 +1,10 @@
+25
+5 0 Astronomická
+10 0 Chlumeckého
+10 0 Súmracná
+5 10 Tomášikova
+5 5 Herlianska
+5 10 Nemocnica Ružinov
+3 2 Líščie nivy
+2 3 Saleziáni
+11 13 Trnavské mýto
