@@ -1,0 +1,129 @@
+            pocet = 0
+            for t in range(treba):
+                try:
+                    if grid[j + t][i] == 1:
+                        pocet += 1
+                        print(pocet)
+                    else:
+                        pocet = 0
+                        break
+                except:
+                    pass
+            if pocet == treba:
+                canvas.unbind("<ButtonPress-1>")
+                canvas.delete("all")
+                canvas.create_text(250, 250, text = "O vyhralo", font = "Arial 20")
+
+            for t in range(treba):
+                try:
+                    if grid[j - t][i] == 1:
+                        pocet += 1
+                    else:
+                        pocet = 0
+                        break
+                except:
+                    pass
+            if pocet == treba:
+                canvas.unbind("<ButtonPress-1>")
+                canvas.delete("all")
+                canvas.create_text(250, 250, text = "O vyhralo", font = "Arial 20")
+
+            for t in range(treba):
+                try:
+                    if grid[j][i + t] == 1:
+                        pocet += 1
+                    else:
+                        pocet = 0
+                        break
+                except:
+                    pass
+            if pocet == treba:
+                canvas.unbind("<ButtonPress-1>")
+                canvas.delete("all")
+                canvas.create_text(250, 250, text = "O vyhralo", font = "Arial 20")
+                
+            for t in range(treba):
+                try:
+                    if grid[j][i - t] == 1:
+                        pocet += 1
+                    else:
+                        pocet = 0
+                        break
+                except:
+                    pass
+            if pocet == treba:
+                canvas.unbind("<ButtonPress-1>")
+                canvas.delete("all")
+                canvas.create_text(250, 250, text = "O vyhralo", font = "Arial 20")
+            
+            for t in range(treba):
+                try:
+                    if grid[j - t][i - t] == 1:
+                        pocet += 1
+                    else:
+                        pocet = 0
+                        break
+                except:
+                    pass
+            if pocet == treba:
+                canvas.unbind("<ButtonPress-1>")
+                canvas.delete("all")
+                canvas.create_text(250, 250, text = "O vyhralo", font = "Arial 20")
+
+            for t in range(treba):
+                try:
+                    if grid[j - t][i + t] == 1:
+                        pocet += 1
+                    else:
+                        pocet = 0
+                        break
+                except:
+                    pass
+            if pocet == treba:
+                canvas.unbind("<ButtonPress-1>")
+                canvas.delete("all")
+                canvas.create_text(250, 250, text = "O vyhralo", font = "Arial 20")
+
+            for t in range(treba):
+                try:
+                    if grid[j + t][i - t] == 1:
+                        pocet += 1
+                    else:
+                        pocet = 0
+                        break
+                except:
+                    pass
+            if pocet == treba:
+                canvas.unbind("<ButtonPress-1>")
+                canvas.delete("all")
+                canvas.create_text(250, 250, text = "O vyhralo", font = "Arial 20")
+                
+            for t in range(treba):
+                try:
+                    if grid[j + i][i + t] == 1:
+                        pocet += 1
+                    else:
+                        pocet = 0
+                        break
+                except:
+                    pass
+            if pocet == treba:
+                canvas.unbind("<ButtonPress-1>")
+                canvas.delete("all")
+                canvas.create_text(250, 250, text = "O vyhralo", font = "Arial 20")
+
+
+            aa = grid[j - 1][i - 1]
+            ab = grid[j - 1][i]
+            ac = grid[j - 1][i + 1]
+            ba = grid[j][i - 1]
+            bb = grid[j][i]
+            bc = grid[j][i + 1]
+            ca = grid[j + 1][i - 1]
+            cb = grid[j + 1][i]
+            cc = grid[j + 1][i + 1]
+
+            if (aa == 1 and ab == 1 and ac == 1) or (aa == 1 and bb == 1 and cc == 1) or (aa == 1 and ba == 1 and ca == 1) or (ba == 1 and bb == 1 and bc == 1) or (ca == 1 and cb == 1 and cc == 1) or (ab == 1 and bb == 1 and cb == 1) or (ac == 1 and bc == 1 and cc == 1) or (ca == 1 and bb == 1 and ac == 1):
+                canvas.unbind("<ButtonPress-1>")
+                canvas.delete("all")
+                canvas.create_text(250, 250, text = "O vyhralo", font = "Arial 20"
