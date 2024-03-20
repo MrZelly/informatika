@@ -39,11 +39,9 @@ for i in range(1,9):
     if i != cislo:
         canvas.create_oval(x-r,y-r,x+r,y+r,fill = 'red', tag = ("zle", i))
         canvas.create_text(x,y,text = i,font = 'Arial 20', tag = ("zle", i))
-        canvas.tag_bind("zle", '<ButtonPress-1>', nespravne)
-        
-
     x += 110 #x = x + 110
 
+canvas.tag_bind("zle", '<ButtonPress-1>', nespravne)
 canvas.tag_bind("dobre", '<ButtonPress-1>', spravne)
 canvas.tag_bind("dobree", '<ButtonPress-1>', spravne)
 
