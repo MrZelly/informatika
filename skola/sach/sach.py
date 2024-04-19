@@ -63,18 +63,57 @@ x1, y1 = 0, 0
 origposx = 0
 origposy = 0
 
+bpesiak = [0] * 8
+cpesiak = [0] * 8
+
 def posun(event, co):
     global x1, y1, figurka, origposx, origposy
     x1, y1 = event.x, event.y
     if co == "vyber":        
         figurka = canvas.gettags("current")[0]
-        origposx = x1 // 100 * 100 + 50
-        origposy = y1 // 100 * 100 + 50
-    if co == "posun":        
+        origposx = x1 // 100
+        origposy = y1 // 100
+    if co == "posun":
+        polickox = x1 // 100
+        polickoy = y1 // 100
         x1 = x1 // 100 * 100 + 50
         y1 = y1 // 100 * 100 + 50
-        if(figurka.startswith("pesiak") and (y1 == origposy + 100 or y1 == origposy + 200)):
-            canvas.coords(figurka, x1, y1)
+
+        if figurka.startswith("pesiak"):
+            if figurka[6] == "B" and polickox == origposx and polickoy < origposy:
+                if polickoy >= origposy - 2 and bpesiak[int(figurka[7])] == 0:
+                    bpesiak[int(figurka[7])] = 1
+                    canvas.coords(figurka, x1, y1)
+                elif polickoy >= origposy - 1:
+                    bpesiak[int(figurka[7])] = 1
+                    canvas.coords(figurka, x1, y1)
+            elif figurka[6] == "C" and polickox == origposx and polickoy > origposy:
+                if polickoy >= origposy + 2 and cpesiak[int(figurka[7])] == 0:
+                    cpesiak[int(figurka[7])] = 1
+                    canvas.coords(figurka, x1, y1)
+                elif polickoy >= origposy + 1:
+                    cpesiak[int(figurka[7])] = 1
+                    canvas.coords(figurka, x1, y1)
+        if figurka.startswith("veza"):
+            if polickoy == origposy or polickox == origposx:
+                canvas.coords(figurka, x1, y1)
+        if figurka.startswith("strelec"):
+            if abs(polickoy - origposy) == abs(polickox - origposx):
+                canvas.coords(figurka, x1, y1)
+        if figurka.startswith("kon"):
+            if((polickoy == origposy + 2 and (polickox == origposx + 1 or polickox == origposx - 1)) or
+               (polickoy == origposy - 2 and (polickox == origposx + 1 or polickox == origposx - 1)) or
+               (polickox == origposx + 2 and (polickoy == origposy + 1 or polickoy == origposy - 1)) or
+               (polickox == origposx - 2 and (polickoy == origposy + 1 or polickoy == origposy - 1))):
+                canvas.coords(figurka, x1, y1)
+        if figurka.startswith("kralovna"):
+            if((polickoy == origposy or polickox == origposx) or 
+               (abs(polickoy - origposy) == abs(polickox - origposx))):
+                canvas.coords(figurka, x1, y1)
+        if figurka.startswith("kral"):
+            if((abs(polickoy - origposy) == 0) and (abs(polickox - origposx) == 1) or ((abs(polickoy - origposy) == 1) and (abs(polickox - origposx) == 0)) or ((abs(polickoy - origposy) == 1) and (abs(polickox - origposx) == 1))):
+                canvas.coords(figurka, x1, y1)
+
         figurka = ""
 
 
@@ -83,6 +122,30 @@ for i in range(9):
 
 for i in range(9):
     canvas.tag_bind("pesiakC"+str(i), '<ButtonPress-1>', lambda event: posun(event,"vyber"))
+
+for i in range(2):
+    canvas.tag_bind("vezaB"+str(i), '<ButtonPress-1>', lambda event: posun(event,"vyber"))
+
+for j in range(2):
+    canvas.tag_bind("vezaC"+str(i), '<ButtonPress-1>', lambda event: posun(event,"vyber"))
+
+for i in range(2):
+    canvas.tag_bind("strelecB"+str(i), '<ButtonPress-1>', lambda event: posun(event,"vyber"))
+
+for j in range(2):
+    canvas.tag_bind("strelecC"+str(i), '<ButtonPress-1>', lambda event: posun(event,"vyber"))
+
+for i in range(2):
+    canvas.tag_bind("konB"+str(i), '<ButtonPress-1>', lambda event: posun(event,"vyber"))
+
+for j in range(2):
+    canvas.tag_bind("konC"+str(i), '<ButtonPress-1>', lambda event: posun(event,"vyber"))
+
+canvas.tag_bind("kralovnaC", '<ButtonPress-1>', lambda event: posun(event,"vyber"))
+canvas.tag_bind("kralovnaB", '<ButtonPress-1>', lambda event: posun(event,"vyber"))
+
+canvas.tag_bind("kralC", '<ButtonPress-1>', lambda event: posun(event,"vyber"))
+canvas.tag_bind("kralB", '<ButtonPress-1>', lambda event: posun(event,"vyber"))
 
 canvas.tag_bind("platno", '<ButtonPress-1>', lambda event: posun(event,"posun"))
 
