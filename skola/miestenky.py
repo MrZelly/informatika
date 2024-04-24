@@ -34,10 +34,7 @@ def klik_r(event):
     elif obsadenost[pos] == 1:
         canvas.itemconfig(tag, fill="white")
         obsadenost[pos] = 0
-    canvas.delete("text")
-    for i in range(5):
-        for j in range(10):
-            canvas.create_text(j*50+25, (i-1)*50+25, text = str(i-1) + str(j), tag = (str(i) + str(j) + "a", "text"))
+    canvas.itemconfig("text", fill="black")
 
 def uloz(event):
     temp = ""
@@ -58,7 +55,6 @@ def uloz(event):
     subor.write(temp)
     subor.close()
     print("zapisane")
-
 
 
 for i in range(10, 51):
